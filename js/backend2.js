@@ -48,10 +48,14 @@ function dataArray(){
         }
     }
     
-    this.addEntry = function(nam, cos, usag){
-        this.data[nam][1] = catag;
-        this.data[nam][2] = usag;
-        
+    this.addEntry = function(nam, cat, cos, usag){
+        if (!(namearr[k] in this.data)){
+            this.data[namearr[k]] = [catarr[k], costarr[k], usagearr[k]];      
+        }
+        else {
+            this.data[nam][1] += cos;
+            this.data[nam][2] += usag;
+        }
         return this.data;
   }
    
