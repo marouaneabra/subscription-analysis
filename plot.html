@@ -22,9 +22,11 @@
   <body>
     <main>
       <p class="intro2">Results</p>
+      <div style="color: white"> <h2> Usage vs Cost</h2> </div>
       <div class="ct-chart"></div>
-      <div> </div>
+      <div style="color: white"> <h2> Overall Usage </h2> </div>
       <div class="ct-chart-pie"></div>
+      <div style="color: white"> <h2> Usage compared to Expenditure </h2> </div>
       <div class="ct-chart-bar"></div>
       <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
      </main>
@@ -177,7 +179,10 @@
   var options = {
     seriesBarDistance: 15,
     axisX: { showGrid: false },
-    axisY: {showGrid: false },
+    axisY: {
+      showGrid: false,
+      showLabel: false
+     },
     width: 700,
     height: 300
   };
