@@ -22,12 +22,19 @@
   <body>
     <main>
       <p class="intro2">Results</p>
+<<<<<<< HEAD
       <div class="ct-chart"></div>
       <div> </div>
       <div class="ct-chart-pie"></div>
       <div class="ct-chart-bar"></div>
       <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-     </main>
+=======
+      <p align="left" style="color:white;">Cost/Usage</p>
+      <div class="ct-chart ct-perfect-fourth"></div>
+      <p align="left" style="color:white;">Cost/Category</p>
+      <div class="ct-chart-bar ct-perfect-fourth"></div>
+>>>>>>> 000f58d751db26c67d4fa62c7761a375da02cd85
+    </main>
 
 
       <script src="js/main.js"></script>
