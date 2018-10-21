@@ -145,3 +145,17 @@ main > .tagline {
     border-radius: 25px;
     font-weight:600;
 }
+
+.ct-label, .ct-chart-line {
+  stroke: white;
+  color: white;
+}
+
+.ct-series-a .ct-line {
+  /* Set the colour of this series line */
+  stroke: white;
+  /* Control the thikness of your lines */
+  stroke-width: 5px;
+  /* Create a dashed line with a pattern */
+  stroke-dasharray: 10px 20px;
+}

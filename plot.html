@@ -23,6 +23,7 @@
     <main>
       <p class="intro2">Results</p>
       <div class="ct-chart ct-perfect-fourth showcase-right"></div>
+      <div class="ct-chart-bar ct-perfect-fourth showcase-right"></div>
       <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </main>
 
@@ -75,21 +76,34 @@
 
   </body>
   <script>
+  var array = [];
+  array = new dataArray();
+  console.log(array.data["Amazon"][1]);
+
+
   var data = {
     // A labels array that can contain any sort of values
 
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+    labels: [(array.data["Amazon"][1])],
     // Our series array that contains series objects or in this case series data arrays
     series: [
-      [5, 2, 4, 2, 0]
+      [(array.data["Amazon"][2])]
     ]
   };
 
   // As options we currently only set a static size of 300x200 px. We can also omit this and use aspect ratio containers
   // as you saw in the previous example
   var options = {
-    width: 300,
-    height: 200
+    width: 500,
+    height: 300,
+
+    axisX: { showGrid: false },
+    axisY: {
+      showGrid: false,
+      labelInterpolationFnc: function(value) {
+        return '$' + Math.abs(value);
+      }
+    }
   };
 
   // Create a new line chart object where as first parameter we pass in a selector
@@ -97,5 +111,42 @@
   // is the actual data object. As a third parameter we pass in our custom options.
   new Chartist.Line('.ct-chart', data, options);
   </script>
+
+  <script>
+  var data = {
+  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    series: [
+    [5, 4, 3, 7, 5, 10, 3, 4, 8, 10, 6, 8],
+    [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4]
+  ]
+};
+
+var options = {
+  width: 500,
+  height: 300,
+  seriesBarDistance: 15
+};
+
+var responsiveOptions = [
+  ['screen and (min-width: 641px) and (max-width: 1024px)', {
+    seriesBarDistance: 10,
+    axisX: {
+      labelInterpolationFnc: function (value) {
+        return value;
+      }
+    }
+  }],
+  ['screen and (max-width: 640px)', {
+    seriesBarDistance: 5,
+    axisX: {
+      labelInterpolationFnc: function (value) {
+        return value[0];
+      }
+    }
+  }]
+];
+
+new Chartist.Bar('.ct-chart-bar', data, options, responsiveOptions);
+</script>
 
 </html>

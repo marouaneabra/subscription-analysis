@@ -99,6 +99,7 @@ function graph(){
   var options = {
     width: 300,
     height: 200
+
   };
 
   // Create a new line chart object where as first parameter we pass in a selector
@@ -107,10 +108,10 @@ function graph(){
   new Chartist.Line('.ct-chart', data, options);
 }
 
-function main(){
-  arr = new dataArray()
-  //console.log(arr.addEntry("Tone","fitness",43,8));
-  console.log(arr.data);
-  //graph()
-}
+// function main(){
+//   arr = new dataArray()
+//   console.log(arr.addEntry("Tone","fitness",43,8));
+//   console.log(arr.data);
+//   graph()
+// }
 //main()
