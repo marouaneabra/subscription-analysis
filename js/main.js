@@ -83,6 +83,7 @@ class dataArray{
 }
 
 function graph(){
+  window.location.href = "plot.html";
   var data = {
     // A labels array that can contain any sort of values
 
@@ -104,7 +105,6 @@ function graph(){
   // that is resolving to our chart container element. The Second parameter
   // is the actual data object. As a third parameter we pass in our custom options.
   new Chartist.Line('.ct-chart', data, options);
-  window.location.href = "plot.html";
 }
 
 function main(){
