@@ -22,7 +22,7 @@ function graph(){
   new Chartist.Line('.ct-chart', data, options);
 }
 
-import { dataArray } from './backend.js';
+import { dataArray } from './main.js';
 var arr = backend.dataArray();
 console.log(arr);
 graph();
