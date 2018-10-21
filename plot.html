@@ -78,16 +78,16 @@
   <script>
   var array = [];
   array = new dataArray();
-  console.log(array.data["Amazon"][1]);
+  console.log(array.data2["Amazon"]);
 
 
   var data = {
     // A labels array that can contain any sort of values
 
-    labels: [(array.data["Amazon"][1])],
+    labels: (array.data2["Amazon"][1]),
     // Our series array that contains series objects or in this case series data arrays
     series: [
-      [(array.data["Amazon"][2])]
+      (array.data2["Amazon"][2]), [250, 250, 250, 250 ,250, 250, 250, 250, 250 ,250]
     ]
   };
 
@@ -170,9 +170,9 @@
   };
 
   var options = {
-    width: 500,
-    height: 300,
-    seriesBarDistance: 15
+    seriesBarDistance: 15,
+    axisX: { showGrid: false },
+    axisY: {showGrid: false }
   };
 
   var responsiveOptions = [
