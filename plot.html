@@ -22,8 +22,10 @@
   <body>
     <main>
       <p class="intro2">Results</p>
-      <div class="ct-chart ct-perfect-fourth showcase-right"></div>
-      <div class="ct-chart-bar ct-perfect-fourth showcase-right"></div>
+      <div class="ct-chart"></div>
+      <div> </div>
+      <div class="ct-chart-pie"></div>
+      <div class="ct-chart-bar"></div>
       <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </main>
 
@@ -76,9 +78,8 @@
 
   </body>
   <script>
-  var array = [];
-  array = new dataArray();
-  console.log(array.data2["Amazon"]);
+
+  array = arr;
 
 
   var data = {
@@ -97,11 +98,15 @@
     width: 500,
     height: 300,
 
-    axisX: { showGrid: false },
+    axisX: { showGrid: false,
+      labelInterpolationFnc: function(value) {
+        return Math.abs(value)/100;
+      }
+    },
     axisY: {
       showGrid: false,
       labelInterpolationFnc: function(value) {
-        return '$' + Math.abs(value);
+        return '$' + Math.abs(value)/10;
       }
     }
   };
@@ -113,7 +118,7 @@
   </script>
 
   <script>
-  array = new dataArray();
+  //array = new dataArray();
         var fitus = 0;
         var entus = 0;
         var profus = 0;
@@ -172,7 +177,9 @@
   var options = {
     seriesBarDistance: 15,
     axisX: { showGrid: false },
-    axisY: {showGrid: false }
+    axisY: {showGrid: false },
+    width: 700,
+    height: 300
   };
 
   var responsiveOptions = [
@@ -195,6 +202,114 @@
   ];
 
   new Chartist.Bar('.ct-chart-bar', data, options, responsiveOptions);
+  </script>
+
+  <script>
+
+  //var array = [];
+  //array = new dataArray();
+  var fitus = 0;
+        var entus = 0;
+        var profus = 0;
+        var homeus = 0;
+        var comus = 0;
+        var shopus = 0;
+        
+        var fitcos = 0;
+        var entcos = 0;
+        var profcos = 0;
+        var homecos = 0;
+        var comcos = 0;
+        var shopcos = 0;
+        
+        
+        //console.log(array.data);
+        for (var item in array.data){
+            if (array.data[item][0] === "fitness"){
+                fitus += array.data[item][2];
+                fitcos += array.data[item][1];
+            }
+            if (array.data[item][0] === "entertainment"){
+                entus += array.data[item][2];
+                entcos += array.data[item][1];
+          }
+            if (array.data[item][0] === "professional"){
+                profus += array.data[item][2];
+                profcos += array.data[item][1];
+            }
+            if (array.data[item][0] === "home"){
+                homeus += array.data[item][2];
+                homecos += array.data[item][1];
+            }
+            if (array.data[item][0] === "communication"){
+                comus += array.data[item][2];
+                comcos += array.data[item][1];
+            }
+            if (array.data[item][0] === "shopping"){
+                shopus += array.data[item][2];
+                shopcos += array.data[item][1];
+            }
+            
+            
+        }
+
+  var chart = new Chartist.Pie('.ct-chart-pie', {
+  series: [fitus, entus, profus, homeus, comus, shopus],
+  labels: ['Fitness', 'Entertainment', 'Professional', 'Home', 'Communication', 'Shopping']
+}, {
+  donut: true,
+  showLabel: true,
+  height: 500,
+  width: 500
+});
+
+chart.on('draw', function(data) {
+  if(data.type === 'slice') {
+    // Get the total path length in order to use for dash array animation
+    var pathLength = data.element._node.getTotalLength();
+
+    // Set a dasharray that matches the path length as prerequisite to animate dashoffset
+    data.element.attr({
+      'stroke-dasharray': pathLength + 'px ' + pathLength + 'px'
+    });
+
+    // Create animation definition while also assigning an ID to the animation for later sync usage
+    var animationDefinition = {
+      'stroke-dashoffset': {
+        id: 'anim' + data.index,
+        dur: 1000,
+        from: -pathLength + 'px',
+        to:  '0px',
+        easing: Chartist.Svg.Easing.easeOutQuint,
+        // We need to use `fill: 'freeze'` otherwise our animation will fall back to initial (not visible)
+        fill: 'freeze'
+      }
+    };
+
+    // If this was not the first slice, we need to time the animation so that it uses the end sync event of the previous animation
+    if(data.index !== 0) {
+      animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end';
+    }
+
+    // We need to set an initial value before the animation starts as we are not in guided mode which would do that for us
+    data.element.attr({
+      'stroke-dashoffset': -pathLength + 'px'
+    });
+
+    // We can't use guided mode as the animations need to rely on setting begin manually
+    // See http://gionkunz.github.io/chartist-js/api-documentation.html#chartistsvg-function-animate
+    data.element.animate(animationDefinition, false);
+  }
+});
+
+// For the sake of the example we update the chart every time it's created with a delay of 8 seconds
+chart.on('created', function() {
+  if(window.__anim21278907124) {
+    clearTimeout(window.__anim21278907124);
+    window.__anim21278907124 = null;
+  }
+  window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
+});
   </script>
 
 </html>

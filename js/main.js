@@ -1,13 +1,14 @@
 //document.getElementById("getStarted").addEventListener("click", getFirstQ);
 
 
+
 function getFirstQ() {
     //document.getElementById("getStarted").innerHTML = Date();
     window.location.href = "input.html";
 }
 
 function addSubscription(){
-  arr = new dataArray()
+  
   var cat = document.getElementById("category").value;
   var serv = document.getElementById("service").value;
   var time = document.getElementById("time").value;
@@ -91,6 +92,7 @@ class dataArray{
 
   }
 }
+var arr = new dataArray()
 
 function graph(){
   window.location.href = "plot.html";
